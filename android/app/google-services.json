@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "820344607429",
+    "project_id": "siatmamobile",
+    "storage_bucket": "siatmamobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820344607429:android:9742e4ff9c84af7ad996ac",
+        "android_client_info": {
+          "package_name": "com.example.siatma_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "820344607429-bkufn4aqb9e1visrmousuj7t0buk8lgf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAlvfN032c3qfQEa5wWykNCGjnc4V2lA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "820344607429-bkufn4aqb9e1visrmousuj7t0buk8lgf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
