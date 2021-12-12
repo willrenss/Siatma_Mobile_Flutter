@@ -47,6 +47,7 @@ dependencies:
   firebase_core: ^1.1.0
   firebase_messaging: ^11.1.0
   flutter_local_notifications: ^9.1.0
+ 
 
 dev_dependencies:
  
@@ -84,13 +85,7 @@ flutter:
     - assets/images/atma-logo.png
     - assets/images/decoration-blue-tip-2.png
     - assets/images/decoration-yellow.png
-    - assets/images/william.png
-    - assets/images/UAJY1.jpg
-    - assets/images/UAJY2.jpg
-    - assets/images/UAJY3.jpg
-    - assets/images/UAJY4.jpg
-    - assets/images/UAJY5.jpg
-    - assets/images/UAJY6.jpg
+    - assets/images/william.png   
     - assets/images/nilai.png
     - assets/images/nilaiback.jpg
     - assets/images/presensi.png

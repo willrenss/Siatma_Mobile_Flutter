@@ -25,6 +25,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void initState() {
     super.initState();
     Provider.of<MatakuliahEP>(context, listen: false).fetchMatakuliahEP();
+    Provider.of<BeritaP>(context, listen: false).fetchBerita();
+    Provider.of<FormEP>(context, listen: false).fetchKusioner();
+    Provider.of<JadwalHariIni>(context, listen: false).fetchJadwalK();
+    Provider.of<Info>(context, listen: false).fetchInfo();
+    Provider.of<SKSMATP>(context, listen: false).fetchSKSMAT();
     // Provider.of<MahasiswaP>(context, listen: false).fetchMahasiswa();
     setState(() {
       if (widget.fromcek == true) {
@@ -45,13 +50,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    Provider.of<FormEP>(context, listen: false).fetchKusioner();
-    Provider.of<JadwalHariIni>(context, listen: false).fetchJadwalK();
     Provider.of<MahasiswaP>(context, listen: false).fetchMahasiswa();
-    Provider.of<Info>(context, listen: false).fetchInfo();
-    Provider.of<SKSMATP>(context, listen: false).fetchSKSMAT();
+    super.didChangeDependencies();
   }
 
   @override

@@ -10,7 +10,6 @@ import 'package:siatma_mobile/api/presensi_api.dart';
 import 'package:siatma_mobile/api/semester_api.dart';
 import 'package:siatma_mobile/components/colors.dart';
 import 'package:siatma_mobile/item/semester.dart';
-import 'package:siatma_mobile/model/kartuhasilstudi_model.dart';
 
 import 'package:siatma_mobile/model/semester_model.dart';
 

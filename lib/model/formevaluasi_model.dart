@@ -140,14 +140,6 @@ class Pertanyaan {
   Map<String, dynamic> toJson() => {
         "jawaban": List<dynamic>.from(jawaban.map((x) => x.toJson())),
       };
-  // factory Pertanyaan.fromJson(Map<List, dynamic> json) {
-  //   return Pertanyaan(
-  //     idjenispertanyaan: json['iD_Jenis_Pertanyaan'],
-  //     idpertanyaan: json['iD_Pertanyaan'],
-  //     soal: json['soal'].toString(),
-  //     jawaban: jsonDecode(json['jawaban']),
-  //   );
-  // }
 }
 
 class Jawaban {
@@ -165,11 +157,4 @@ class Jawaban {
         "text": text,
         "nilai": nilai,
       };
-
-  // factory Jawaban.fromJson(Map<List, Jawaban> json) {
-  //   return Jawaban(
-  //     text: json['text'].toString(),
-  //     nilai: json['nilai'].nilai,
-  //   );
-  // }
 }

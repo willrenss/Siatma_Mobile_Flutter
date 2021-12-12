@@ -13,10 +13,6 @@ class PembayaranP with ChangeNotifier {
     return [..._items];
   }
 
-  // Pembayaran findById(String kodes) {
-  //   return _items.firstWhere((pembayaranjson) => pembayaranjson.kode == kodes); // find the pembayaranjson
-  // }
-
   Future<void> fetchPembayaran() async {
     final prefs = await SharedPreferences.getInstance();
 

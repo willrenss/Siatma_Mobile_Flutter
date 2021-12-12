@@ -33,16 +33,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    // init();
     super.initState();
     requestModel = new LoginRequestModel();
   }
-
-  // init() async {
-  //   final prefs = await SharedPreferences.getInstance();
-
-  //   prefs.setString('token', "");
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -924,34 +917,6 @@ class _LoginScreenState extends State<LoginScreen> {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("Error")));
       }
-    }
-  }
-
-  Future<void> mahasiswa() async {
-    final prefs = await SharedPreferences.getInstance();
-
-    String counter = prefs.getString('token') ?? '0';
-
-    var response = await http.get(
-      Uri.parse(
-          "https://siatma-api.uajy.ac.id/api/info/presensi?tahun=Gasal TA 2018/2019"),
-      headers: {
-        'Authorization': 'Bearer $counter',
-        'Content-type': 'application/json',
-        'Accept': 'application/json',
-      },
-    );
-    if (response.statusCode == 200) {
-      print(response.statusCode);
-      final data = json.decode(response.body) as Map<String, dynamic>;
-      print((data['data']));
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Login")));
-    } else {
-      print(response.statusCode);
-      print(response.body);
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Error")));
     }
   }
 }

@@ -131,8 +131,6 @@ class _MyAppState extends State<MyApp> {
 
     if (token != '0')
       setState(() {
-        // Provider.of<MahasiswaP>(context, listen: false).fetchMahasiswa();
-
         this.page = DashboardScreen(true);
       });
     else
@@ -154,6 +152,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider<SemesterJadwal>(
             create: (_) => new SemesterJadwal()),
         ChangeNotifierProvider<JadwalKP>(create: (_) => new JadwalKP()),
+        ChangeNotifierProvider<BeritaP>(create: (_) => new BeritaP()),
         ChangeNotifierProvider<JadwalHariIni>(
             create: (_) => new JadwalHariIni()),
         ChangeNotifierProvider<FormEP>(create: (_) => new FormEP()),

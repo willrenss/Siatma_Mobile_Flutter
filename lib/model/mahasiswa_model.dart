@@ -8,24 +8,31 @@ class Mahasiswa {
   final String lama;
   final String idprodi;
   final String thnMasuk;
+  final String agama;
+  final String sma;
   final String kdStatus;
   final String foto;
+  final String namadosen;
   final String prodi;
   final String fakultas;
+  final String namaortu;
   final String panggilan;
 
   Mahasiswa({
     this.npm,
     this.nama,
+    this.sma,
     this.panggilan,
     this.alamat,
+    this.namadosen,
     this.alamatortu,
+    this.agama,
     this.tmpLahir,
     this.tglLahir,
     this.lama,
     this.idprodi,
+    this.namaortu,
     this.thnMasuk,
-    // KD_STATUS_MHS1
     this.kdStatus,
     this.foto,
     this.prodi,
@@ -37,15 +44,19 @@ class Mahasiswa {
       npm: json['NPM'].toString(),
       panggilan: json['PANGGILAN'].toString(),
       nama: json['NAMA_MHS'].toString(),
-      alamat: json['ALAMAT'].toString(),
+      agama: json['AGAMA'].toString(),
+      alamat: json['ALAMAT_JOGJA'].toString(),
       alamatortu: json['ALAMAT_ORTU'].toString(),
       tmpLahir: json['TMP_LAHIR'].toString(),
       tglLahir: json['TGL_LAHIR'].toString(),
+      namadosen: json['NAMA_DOSEN_LENGKAP'].toString(),
       lama: json['LAMA'].toString(),
       idprodi: json['ID_PRODI'].toString(),
       thnMasuk: json['THN_MASUK'].toString(),
       kdStatus: json['KD_STATUS_MHS'].toString(),
       foto: json['FOTO'],
+      namaortu: json['NAMA_ORTU'].toString(),
+      sma: json['SMA'].toString(),
       prodi: json['PRODI'].toString(),
       fakultas: json['FAKULTAS'].toString(),
     );

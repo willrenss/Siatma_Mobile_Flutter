@@ -28,14 +28,7 @@ class _PresensiScreenState extends State {
       body: SafeArea(
         child: CustomScrollView(
           physics: NeverScrollableScrollPhysics(),
-          slivers: <Widget>[
-            _menu(),
-            _presensi()
-            // SliverPadding(
-            //   sliver: SliverToBoxAdapter(child: Text("hahahah")),
-            //   padding: EdgeInsets.all(10),
-            // )
-          ],
+          slivers: <Widget>[_menu(), _presensi()],
         ),
       ),
     );

@@ -1,9 +1,7 @@
 import 'dart:convert';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siatma_mobile/api/api_service.dart';
 import 'package:siatma_mobile/api/formevaluasi_api.dart';
@@ -16,8 +14,8 @@ import 'package:siatma_mobile/model/mahasiswa_model.dart';
 import 'package:siatma_mobile/view/formEvaluasiScreen.dart';
 import 'package:siatma_mobile/view/pembayaranScreen.dart';
 import 'package:siatma_mobile/view/presensiScreen.dart';
+import 'package:siatma_mobile/widget/beritawidget.dart';
 import 'package:siatma_mobile/widget/jadwalhariiniWidget.dart';
-
 import 'nilaiScreen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -405,7 +403,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     blurRadius: 5.5,
                   )
                 ]),
-            child: _caraousel()));
+            child: BeritaView()));
   }
 
   Container _backBgCover() {
@@ -418,77 +416,6 @@ class _HomeScreenState extends State<HomeScreen> {
           bottomRight: Radius.circular(40),
         ),
       ),
-    );
-  }
-
-  CarouselSlider _caraousel() {
-    return CarouselSlider(
-      options: CarouselOptions(
-          height: 150,
-          autoPlay: true,
-          enlargeCenterPage: true,
-          aspectRatio: 16 / 9,
-          autoPlayInterval: Duration(seconds: 2),
-          enableInfiniteScroll: true,
-          autoPlayAnimationDuration: Duration(milliseconds: 200),
-          autoPlayCurve: Curves.fastOutSlowIn,
-          viewportFraction: 0.7),
-      items: [
-        Container(
-          margin: EdgeInsets.all(1.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            image: DecorationImage(
-                image: AssetImage('assets/images/UAJY1.jpg'),
-                fit: BoxFit.cover),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.all(1.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            image: DecorationImage(
-                image: AssetImage('assets/images/UAJY2.jpg'),
-                fit: BoxFit.cover),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.all(1.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            image: DecorationImage(
-                image: AssetImage('assets/images/UAJY3.jpg'),
-                fit: BoxFit.cover),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.all(1.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            image: DecorationImage(
-                image: AssetImage('assets/images/UAJY4.jpg'),
-                fit: BoxFit.cover),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.all(1.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            image: DecorationImage(
-                image: AssetImage('assets/images/UAJY5.jpg'),
-                fit: BoxFit.cover),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.all(1.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            image: DecorationImage(
-                image: AssetImage('assets/images/UAJY6.jpg'),
-                fit: BoxFit.cover),
-          ),
-        ),
-      ],
     );
   }
 
@@ -510,7 +437,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      mahasiswa.panggilan != null ? 'Good $now !' : "Good Day",
+                      mahasiswa.panggilan != null ? 'Good $now!' : "Good Day",
                       style: TextStyle(
                         fontSize: 34,
                         fontWeight: FontWeight.w500,
@@ -521,7 +448,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 10,
                     ),
                     Text(
-                      'How are you feeling today ?',
+                      'How are you feeling today?',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w300,
@@ -566,10 +493,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: 50,
                                 decoration: BoxDecoration(
                                   color: fotobirucolor,
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/UAJY_LOGOHD.png'),
-                                      fit: BoxFit.cover),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(48.0)),
                                 ),

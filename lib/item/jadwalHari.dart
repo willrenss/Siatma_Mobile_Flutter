@@ -43,7 +43,7 @@ class _JadwalItemState extends State<JadwalItem> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AutoSizeText(
-                "${widget.jadwal.matakuliah} / Sesi${cekSesi(widget.jadwal, day)}",
+                "${widget.jadwal.matakuliah}/Sesi${cekSesi(widget.jadwal, day)}",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 13,

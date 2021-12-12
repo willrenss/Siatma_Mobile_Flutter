@@ -5,13 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:siatma_mobile/api/jadwal_api.dart';
 import 'package:siatma_mobile/api/mahasiswa_api.dart';
 import 'package:siatma_mobile/components/colors.dart';
 import 'package:siatma_mobile/components/custom_dialog.dart';
+import 'package:siatma_mobile/components/keluar_dialog.dart';
 import 'package:siatma_mobile/model/mahasiswa_model.dart';
 import 'package:intl/intl.dart';
-import 'package:siatma_mobile/view/loginScreen.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -73,15 +72,12 @@ class _ProfileScreenState extends State {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                _body(mahasiswa, tglLahir),
-                              ],
+                              children: [_body(mahasiswa, tglLahir), _action()],
                             ),
                           ),
                         )),
                   ),
                 ),
-                _action()
               ],
             ),
           )),
@@ -94,8 +90,8 @@ class _ProfileScreenState extends State {
       decoration: BoxDecoration(
         gradient: blueGradient,
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(100),
-          bottomRight: Radius.circular(100),
+          bottomLeft: Radius.circular(50),
+          bottomRight: Radius.circular(50),
         ),
       ),
     );
@@ -155,24 +151,12 @@ class _ProfileScreenState extends State {
                       maxLines: 1,
                     ),
                     onPressed: () {
-                      setState(() {
-                        Provider.of<JadwalHariIni>(context, listen: false)
-                            .fetchcek(true);
-                        Provider.of<JadwalHariIni>(context, listen: false)
-                            .fetchstatus(true);
-                      });
-                      clear();
-                      final snackBar = SnackBar(
-                        behavior: SnackBarBehavior.floating,
-                        backgroundColor: Colors.green[800],
-                        duration: Duration(milliseconds: 800),
-                        content: Text("Log Out Berhasil"),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
-                      );
+                      showDialog<void>(
+                          barrierColor: Colors.white.withOpacity(0.1),
+                          context: context,
+                          builder: (context) {
+                            return KeluarDialog();
+                          });
                     },
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.only(right: 45, left: 45),
@@ -193,11 +177,6 @@ class _ProfileScreenState extends State {
     return Container(
       padding: EdgeInsets.all(10),
       width: MediaQuery.of(context).size.width,
-
-      // decoration: BoxDecoration(
-      //   borderRadius: BorderRadius.all(Radius.circular(15)),
-      //   color: Colors.white54,
-      // ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -207,9 +186,6 @@ class _ProfileScreenState extends State {
                 fontSize: 12,
                 color: Colors.black54,
                 fontWeight: FontWeight.w600),
-            // maxLines: 2,
-            // maxFontSize: 18,
-            // group: profilGroup,
           ),
           SizedBox(height: 5),
           AutoSizeText(
@@ -218,9 +194,6 @@ class _ProfileScreenState extends State {
                 fontSize: 18,
                 color: blueatmacolor,
                 fontWeight: FontWeight.w600),
-            // maxLines: 2,
-            // maxFontSize: 18,
-            // group: profilGroup,
           ),
           Divider(
             color: Colors.black45,
@@ -231,9 +204,6 @@ class _ProfileScreenState extends State {
                 fontSize: 12,
                 color: Colors.black54,
                 fontWeight: FontWeight.w600),
-            // maxLines: 2,
-            // maxFontSize: 18,
-            // group: profilGroup,
           ),
           SizedBox(height: 5),
           AutoSizeText(
@@ -242,9 +212,6 @@ class _ProfileScreenState extends State {
                 fontSize: 18,
                 color: blueatmacolor,
                 fontWeight: FontWeight.w600),
-            // maxLines: 2,
-            // maxFontSize: 18,
-            // group: profilGroup,
           ),
           Divider(
             color: Colors.black45,
@@ -255,9 +222,6 @@ class _ProfileScreenState extends State {
                 fontSize: 12,
                 color: Colors.black54,
                 fontWeight: FontWeight.w600),
-            // maxLines: 2,
-            // maxFontSize: 18,
-            // group: profilGroup,
           ),
           SizedBox(height: 5),
           AutoSizeText(
@@ -266,9 +230,6 @@ class _ProfileScreenState extends State {
                 fontSize: 18,
                 color: blueatmacolor,
                 fontWeight: FontWeight.w600),
-            // maxLines: 2,
-            // maxFontSize: 18,
-            // group: profilGroup,
           ),
           Divider(
             color: Colors.black45,
@@ -279,9 +240,6 @@ class _ProfileScreenState extends State {
                 fontSize: 12,
                 color: Colors.black54,
                 fontWeight: FontWeight.w600),
-            // maxLines: 2,
-            // maxFontSize: 18,
-            // group: profilGroup,
           ),
           SizedBox(height: 5),
           AutoSizeText(
@@ -290,9 +248,6 @@ class _ProfileScreenState extends State {
                 fontSize: 18,
                 color: blueatmacolor,
                 fontWeight: FontWeight.w600),
-            // maxLines: 2,
-            // maxFontSize: 18,
-            // group: profilGroup,
           ),
           Divider(
             color: Colors.black45,
@@ -303,9 +258,6 @@ class _ProfileScreenState extends State {
                 fontSize: 12,
                 color: Colors.black54,
                 fontWeight: FontWeight.w600),
-            // maxLines: 2,
-            // maxFontSize: 18,
-            // group: profilGroup,
           ),
           SizedBox(height: 5),
           AutoSizeText(
@@ -314,9 +266,6 @@ class _ProfileScreenState extends State {
                 fontSize: 18,
                 color: blueatmacolor,
                 fontWeight: FontWeight.w600),
-            // maxLines: 2,
-            // maxFontSize: 18,
-            // group: profilGroup,
           ),
           Divider(
             color: Colors.black45,
@@ -327,9 +276,6 @@ class _ProfileScreenState extends State {
                 fontSize: 12,
                 color: Colors.black54,
                 fontWeight: FontWeight.w600),
-            // maxLines: 2,
-            // maxFontSize: 18,
-            // group: profilGroup,
           ),
           SizedBox(height: 5),
           AutoSizeText(
@@ -338,9 +284,6 @@ class _ProfileScreenState extends State {
                 fontSize: 18,
                 color: blueatmacolor,
                 fontWeight: FontWeight.w600),
-            // maxLines: 2,
-            // maxFontSize: 18,
-            // group: profilGroup,
           ),
           Divider(
             color: Colors.black45,
@@ -351,9 +294,6 @@ class _ProfileScreenState extends State {
                 fontSize: 12,
                 color: Colors.black54,
                 fontWeight: FontWeight.w600),
-            // maxLines: 2,
-            // maxFontSize: 18,
-            // group: profilGroup,
           ),
           SizedBox(height: 5),
           AutoSizeText(
@@ -362,9 +302,96 @@ class _ProfileScreenState extends State {
                 fontSize: 18,
                 color: blueatmacolor,
                 fontWeight: FontWeight.w600),
-            // maxLines: 2,
-            // maxFontSize: 18,
-            // group: profilGroup,
+          ),
+          Divider(
+            color: Colors.black45,
+          ),
+          AutoSizeText(
+            "Agama",
+            style: TextStyle(
+                fontSize: 12,
+                color: Colors.black54,
+                fontWeight: FontWeight.w600),
+          ),
+          SizedBox(height: 5),
+          AutoSizeText(
+            "${mahasiswa.agama} ",
+            style: TextStyle(
+                fontSize: 18,
+                color: blueatmacolor,
+                fontWeight: FontWeight.w600),
+          ),
+          Divider(
+            color: Colors.black45,
+          ),
+          AutoSizeText(
+            "Asal SMA",
+            style: TextStyle(
+                fontSize: 12,
+                color: Colors.black54,
+                fontWeight: FontWeight.w600),
+          ),
+          SizedBox(height: 5),
+          AutoSizeText(
+            "${mahasiswa.sma} ",
+            style: TextStyle(
+                fontSize: 18,
+                color: blueatmacolor,
+                fontWeight: FontWeight.w600),
+          ),
+          Divider(
+            color: Colors.black45,
+          ),
+          AutoSizeText(
+            "Dosen Pembimbing",
+            style: TextStyle(
+                fontSize: 12,
+                color: Colors.black54,
+                fontWeight: FontWeight.w600),
+          ),
+          SizedBox(height: 5),
+          AutoSizeText(
+            "${mahasiswa.namadosen} ",
+            style: TextStyle(
+                fontSize: 18,
+                color: blueatmacolor,
+                fontWeight: FontWeight.w600),
+          ),
+          Divider(
+            color: Colors.black45,
+          ),
+          AutoSizeText(
+            "Nama Orang Tua",
+            style: TextStyle(
+                fontSize: 12,
+                color: Colors.black54,
+                fontWeight: FontWeight.w600),
+          ),
+          SizedBox(height: 5),
+          AutoSizeText(
+            "${mahasiswa.namaortu} ",
+            style: TextStyle(
+                fontSize: 18,
+                color: blueatmacolor,
+                fontWeight: FontWeight.w600),
+          ),
+          Divider(
+            color: Colors.black45,
+          ),
+          AutoSizeText(
+            "Alamat Orang Tua",
+            style: TextStyle(
+                fontSize: 12,
+                color: Colors.black54,
+                fontWeight: FontWeight.w600),
+          ),
+          SizedBox(height: 5),
+          AutoSizeText(
+            "${mahasiswa.alamatortu} ",
+            style: TextStyle(
+                fontSize: 18,
+                color: blueatmacolor,
+                fontWeight: FontWeight.w600),
           ),
           Divider(
             color: Colors.black45,

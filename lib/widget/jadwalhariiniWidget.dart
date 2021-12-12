@@ -18,7 +18,6 @@ class JadwalHariView extends StatefulWidget {
 class _JadwalHariViewState extends State<JadwalHariView> {
   @override
   void initState() {
-    Provider.of<JadwalHariIni>(context, listen: false).fetchJadwalK();
     super.initState();
   }
 
