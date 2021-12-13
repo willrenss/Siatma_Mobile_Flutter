@@ -38,7 +38,7 @@ class _PembayaranScreenState extends State {
         padding: const EdgeInsets.only(top: 10.0),
         sliver: SliverToBoxAdapter(
           child: Container(
-            height: MediaQuery.of(context).size.height - 100,
+            height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -49,7 +49,7 @@ class _PembayaranScreenState extends State {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                SizedBox(height: 15),
+                SizedBox(height: 20),
                 Container(
                   padding: EdgeInsets.only(right: 5, left: 5),
                   decoration: BoxDecoration(

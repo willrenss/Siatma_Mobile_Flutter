@@ -57,8 +57,13 @@ class _KeluarDialog extends State<KeluarDialog> {
                         .fetchcek(true);
                     Provider.of<JadwalHariIni>(context, listen: false)
                         .fetchstatus(true);
+                    clear();
                   });
-                  clear();
+                  Navigator.pop(context, 'Keluar');
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                  );
                   final snackBar = SnackBar(
                     behavior: SnackBarBehavior.floating,
                     backgroundColor: Colors.green[800],
@@ -66,10 +71,6 @@ class _KeluarDialog extends State<KeluarDialog> {
                     content: Text("Log Out Berhasil"),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
-                  );
                 },
                 child:
                     const Text('Keluar', style: TextStyle(color: Colors.red)))
