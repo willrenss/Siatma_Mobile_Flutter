@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -262,32 +263,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               onTap: () {
-                var tglselesai = DateFormat("dd-MMM-yyyy")
-                    .format(DateTime.parse(form.tglselesai));
-                var tglmulai = DateFormat("dd-MMM-yyyy")
-                    .format(DateTime.parse(form.tglmulai));
+                // var tglselesai = DateFormat("dd-MMM-yyyy")
+                //     .format(DateTime.parse(form.tglselesai));
+                // var tglmulai = DateFormat("dd-MMM-yyyy")
+                //     .format(DateTime.parse(form.tglmulai));
 
-                if (now.isAfter(DateFormat("yyyy-MM-ddThh:mm:ssZ")
-                        .parse(form.tglmulai)) &&
-                    now.isBefore(DateFormat("yyyy-MM-ddThh:mm:ssZ")
-                        .parse(form.tglselesai))) {
+                // if (now.isAfter(DateFormat("yyyy-MM-ddThh:mm:ssZ")
+                //         .parse(form.tglmulai)) &&
+                //     now.isBefore(DateFormat("yyyy-MM-ddThh:mm:ssZ")
+                //         .parse(form.tglselesai))) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => FormEvaluasiScreen()),
                 );
-                } else {
-                  final snackBar = SnackBar(
-                    behavior: SnackBarBehavior.floating,
-                    backgroundColor: Colors.red[800],
-                    duration: Duration(milliseconds: 800),
-                    content: Text(form.namaform +
-                        " Dosen Mulai " +
-                        tglmulai.toString() +
-                        ", Akan Berakhir " +
-                        tglselesai.toString()),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                }
+                // } else {
+                //   final snackBar = SnackBar(
+                //     behavior: SnackBarBehavior.floating,
+                //     backgroundColor: Colors.red[800],
+                //     duration: Duration(milliseconds: 800),
+                //     content: Text(form.namaform +
+                //         " Dosen Mulai " +
+                //         tglmulai.toString() +
+                //         ", Akan Berakhir " +
+                //         tglselesai.toString()),
+                //   );
+                //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                // }
               },
             ),
           ),
@@ -432,71 +433,81 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      mahasiswa.panggilan != null ? 'Good $now!' : "Good Day",
-                      style: TextStyle(
-                        fontSize: 34,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'How are you feeling today?',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w300,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-                Spacer(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Container(
-                        width: 100.0,
-                        height: 100.0,
-                        decoration: BoxDecoration(
-                          color: fotobirucolor,
-                          borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                          border: Border.all(
-                            color: Colors.white,
-                            width: 2.0,
-                          ),
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AutoSizeText(
+                        mahasiswa.panggilan != null ? 'Good $now!' : "Good Day",
+                        maxLines: 1,
+                        maxFontSize: 30,
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
                         ),
-                        child: mahasiswa.foto != null
-                            ? Container(
-                                width: 50,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: fotobirucolor,
-                                  image: DecorationImage(
-                                      image: Image.memory(
-                                        base64.decode(mahasiswa.foto),
-                                      ).image,
-                                      fit: BoxFit.fitWidth),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(48.0)),
-                                ),
-                              )
-                            : Container(
-                                width: 50,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: fotobirucolor,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(48.0)),
-                                ),
-                              )),
-                  ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      AutoSizeText(
+                        'How are you feeling today?',
+                        maxLines: 1,
+                        maxFontSize: 20,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w300,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Container(
+                          width: 100.0,
+                          height: 100.0,
+                          decoration: BoxDecoration(
+                            color: fotobirucolor,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(50.0)),
+                            border: Border.all(
+                              color: Colors.white,
+                              width: 2.0,
+                            ),
+                          ),
+                          child: mahasiswa.foto != null
+                              ? Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color: fotobirucolor,
+                                    image: DecorationImage(
+                                        image: Image.memory(
+                                          base64.decode(mahasiswa.foto),
+                                        ).image,
+                                        fit: BoxFit.fitWidth),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(48.0)),
+                                  ),
+                                )
+                              : Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color: fotobirucolor,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(48.0)),
+                                  ),
+                                )),
+                    ],
+                  ),
                 )
               ],
             )

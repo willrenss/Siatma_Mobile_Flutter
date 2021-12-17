@@ -35,7 +35,7 @@ class _FormEvaluasiScreenState extends State {
 
   SliverPadding _formEvaluasi() {
     return SliverPadding(
-        padding: const EdgeInsets.only(top: 10.0),
+        padding: const EdgeInsets.only(top: 30.0),
         sliver: SliverToBoxAdapter(
           child: Container(
             height: MediaQuery.of(context).size.height - 100,
@@ -46,23 +46,10 @@ class _FormEvaluasiScreenState extends State {
                 topRight: Radius.circular(30.0),
               ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(height: 15),
-                Container(
-                  padding: EdgeInsets.only(right: 5, left: 5),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30.0),
-                      topRight: Radius.circular(30.0),
-                    ),
-                  ),
-                  height: MediaQuery.of(context).size.height - 115,
-                  child: FormEvaluasiView(),
-                ),
-              ],
+            child: Container(
+              padding: EdgeInsets.only(right: 5, left: 5, top: 15),
+              height: MediaQuery.of(context).size.height - 115,
+              child: FormEvaluasiView(),
             ),
           ),
         ));

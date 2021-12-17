@@ -353,7 +353,8 @@ class _NilaiScreenState extends State with SingleTickerProviderStateMixin {
                 setState(() {
                   isVisible = true;
                 });
-              } else {
+              }
+              if (index == 1) {
                 setState(() {
                   isVisible = !isVisible;
                 });

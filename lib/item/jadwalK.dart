@@ -28,7 +28,6 @@ class JadwalKItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(20)),
       padding: EdgeInsets.all(20),
       margin: EdgeInsets.symmetric(vertical: 5),
-      width: MediaQuery.of(context).size.width - 390,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

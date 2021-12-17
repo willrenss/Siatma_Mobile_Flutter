@@ -244,11 +244,14 @@ class _JadwalScreenState extends State with SingleTickerProviderStateMixin {
             onTap: (index) {
               if (index == 0) {
                 setState(() {
+                  print(index);
                   isVisible = true;
                 });
-              } else {
+              }
+              if (index == 1) {
                 setState(() {
-                  isVisible = !isVisible;
+                  print(index);
+                  isVisible = false;
                 });
               }
             },

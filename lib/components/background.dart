@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class BackgroundImage extends StatelessWidget {
@@ -12,8 +13,9 @@ class BackgroundImage extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         child: Container(
           padding: EdgeInsets.only(bottom: 10, right: 5, left: 5),
-          child: Text(
+          child: AutoSizeText(
             "©2021 Kantor Sistem Infomrasi Universitas Atma Jaya Yogyakarta",
+            maxLines: 1,
             style: TextStyle(color: Colors.white, fontSize: 12),
           ),
         ),

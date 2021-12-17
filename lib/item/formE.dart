@@ -20,7 +20,7 @@ class FormEItem extends StatelessWidget {
                 image: DecorationImage(
                   colorFilter: ColorFilter.mode(
                       Colors.black.withOpacity(0.5), BlendMode.dstATop),
-                  image: ExactAssetImage('assets/images/nilaiback.jpg'),
+                  image: ExactAssetImage('assets/images/evaluasiback.jpg'),
                   fit: BoxFit.cover,
                 ),
                 boxShadow: [

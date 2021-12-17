@@ -28,7 +28,6 @@ class PembayaranItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(20)),
       padding: EdgeInsets.all(15),
       margin: EdgeInsets.symmetric(vertical: 5),
-      width: MediaQuery.of(context).size.width - 390,
       child: Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,

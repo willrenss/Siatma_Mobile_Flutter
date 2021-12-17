@@ -111,7 +111,7 @@ class _ProfileScreenState extends State {
                     icon: Icon(
                       Icons.change_circle,
                       color: Colors.white,
-                      size: 20.0,
+                      size: 15.0,
                     ),
                     label: AutoSizeText('Ganti Password',
                         style: TextStyle(fontSize: 18),
@@ -137,12 +137,11 @@ class _ProfileScreenState extends State {
               ),
               Expanded(
                   flex: 1,
-                  child: Center(
-                      child: ElevatedButton.icon(
+                  child: ElevatedButton.icon(
                     icon: Icon(
                       Icons.logout,
                       color: Colors.white,
-                      size: 20.0,
+                      size: 15.0,
                     ),
                     label: AutoSizeText(
                       'Keluar',
@@ -159,13 +158,12 @@ class _ProfileScreenState extends State {
                           });
                     },
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.only(right: 45, left: 45),
                       primary: Colors.green[800],
                       shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(15.0),
                       ),
                     ),
-                  ))),
+                  )),
             ],
           ),
         ],
@@ -449,9 +447,10 @@ class _ProfileScreenState extends State {
                         ),
                         AutoSizeText(
                           "SKS",
+                          maxFontSize: 15,
                           style: GoogleFonts.openSans(
                             color: Colors.black54,
-                            fontSize: 18.5,
+                            fontSize: 15,
                             fontWeight: FontWeight.w800,
                           ),
                           group: myGroup,
@@ -491,9 +490,10 @@ class _ProfileScreenState extends State {
                         ),
                         AutoSizeText(
                           "Mata Kuliah",
+                          maxFontSize: 15,
                           style: GoogleFonts.openSans(
                             color: Colors.black54,
-                            fontSize: 18.5,
+                            fontSize: 15,
                             fontWeight: FontWeight.w800,
                           ),
                           group: myGroup,
@@ -534,9 +534,10 @@ class _ProfileScreenState extends State {
                         ),
                         AutoSizeText(
                           "IPK",
+                          maxFontSize: 15,
                           style: GoogleFonts.openSans(
                             color: Colors.black54,
-                            fontSize: 18.5,
+                            fontSize: 15,
                             fontWeight: FontWeight.w800,
                           ),
                           group: myGroup,
