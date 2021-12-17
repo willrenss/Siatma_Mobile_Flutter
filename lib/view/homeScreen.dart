@@ -271,11 +271,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         .parse(form.tglmulai)) &&
                     now.isBefore(DateFormat("yyyy-MM-ddThh:mm:ssZ")
                         .parse(form.tglselesai))) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => FormEvaluasiScreen()),
-                  );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => FormEvaluasiScreen()),
+                );
                 } else {
                   final snackBar = SnackBar(
                     behavior: SnackBarBehavior.floating,

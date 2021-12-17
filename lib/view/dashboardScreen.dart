@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ff_navigation_bar/ff_navigation_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:siatma_mobile/api/formevaluasi_api.dart';
-import 'package:siatma_mobile/api/jadwal_api.dart';
 import 'package:siatma_mobile/api/mahasiswa_api.dart';
 import 'package:siatma_mobile/components/colors.dart';
 import 'package:siatma_mobile/view/homeScreen.dart';
@@ -29,7 +28,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     Provider.of<FormEP>(context, listen: false).fetchKusioner();
     Provider.of<Info>(context, listen: false).fetchInfo();
     Provider.of<SKSMATP>(context, listen: false).fetchSKSMAT();
-    // Provider.of<MahasiswaP>(context, listen: false).fetchMahasiswa();
+
     setState(() {
       if (widget.fromcek == true) {
         _listScreens = [
