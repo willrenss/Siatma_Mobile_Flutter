@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:siatma_mobile/components/colors.dart';
@@ -28,18 +29,22 @@ class _SemesterItemState extends State<SemesterItem> {
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Container(
+        padding: EdgeInsets.only(left: 8, right: 8),
         child: Center(
-          child: Text(
-              widget.semester != 0
-                  ? "${widget.semesteraka.semesterakademik} [ ${widget.semester} ]"
-                  : "",
-              style: TextStyle(
-                  fontFamily: 'Lato',
-                  fontSize: 17,
-                  fontWeight: FontWeight.w600,
-                  color: widget.current == widget.index
-                      ? blueatmacolor
-                      : Colors.white)),
+          child: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: AutoSizeText(
+                  widget.semester != 0
+                      ? "${widget.semesteraka.semesterakademik} [ ${widget.semester} ]"
+                      : "",
+                  maxLines: 1,
+                  style: TextStyle(
+                      fontFamily: 'Lato',
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                      color: widget.current == widget.index
+                          ? blueatmacolor
+                          : Colors.white))),
         ),
       ),
     );

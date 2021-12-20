@@ -157,8 +157,8 @@ class _JadwalScreenState extends State with SingleTickerProviderStateMixin {
                   }
                 },
                 child: Container(
-                  padding: EdgeInsets.only(right: 5, left: 5, top: 20),
-                  height: MediaQuery.of(context).size.height - 250,
+                  padding: EdgeInsets.only(right: 5, left: 5),
+                  height: MediaQuery.of(context).size.height - 140,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -166,10 +166,22 @@ class _JadwalScreenState extends State with SingleTickerProviderStateMixin {
                       topRight: Radius.circular(30.0),
                     ),
                   ),
-                  child: Container(
-                    decoration: BoxDecoration(color: Colors.white),
-                    height: MediaQuery.of(context).size.height - 295,
-                    child: JadwalKView(),
+                  child: Center(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        SizedBox(height: 35),
+                        // SizedBox(height: 15),
+                        Container(
+                          decoration: BoxDecoration(color: Colors.white),
+                          height: MediaQuery.of(context).size.height - 295,
+                          child: JadwalKView(),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(color: Colors.white),
+                        )
+                      ],
+                    ),
                   ),
                 ))));
   }
@@ -203,11 +215,13 @@ class _JadwalScreenState extends State with SingleTickerProviderStateMixin {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         SizedBox(height: 35),
-                        // SizedBox(height: 15),
                         Container(
                           decoration: BoxDecoration(color: Colors.white),
                           height: MediaQuery.of(context).size.height - 295,
                           child: JadwalUView(),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(color: Colors.white),
                         )
                       ],
                     ),

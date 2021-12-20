@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siatma_mobile/api/jadwal_api.dart';
-
 import 'package:siatma_mobile/api/semester_api.dart';
 import 'package:siatma_mobile/components/Colors.dart';
 import 'package:siatma_mobile/item/semester.dart';
-
 import 'package:siatma_mobile/model/semester_model.dart';
 
 class SemesterJadwalview extends StatefulWidget {

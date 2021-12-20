@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +17,7 @@ class NilaiScreen extends StatefulWidget {
 class _NilaiScreenState extends State with SingleTickerProviderStateMixin {
   bool isVisible = true;
   var _searchview = new TextEditingController();
-
+  var text = AutoSizeGroup();
   final List<Tab> myTabs = <Tab>[
     new Tab(text: 'KHS'),
     new Tab(text: 'DHS'),
@@ -233,83 +234,70 @@ class _NilaiScreenState extends State with SingleTickerProviderStateMixin {
                 SizedBox(height: 15),
                 Center(
                   child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          child: Text(
-                            "IPS : ",
-                            style: const TextStyle(
-                              fontFamily: "Lato",
-                              color: blueatmacolor,
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
+                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    child: Center(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            flex: 5,
+                            child: Container(
+                              child: AutoSizeText(
+                                ips.length > 0
+                                    ? "IPS :" + " ${ips[0].ips}"
+                                    : "IPS : - ",
+                                style: const TextStyle(
+                                  fontFamily: "Lato",
+                                  color: blueatmacolor,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                group: text,
+                                maxLines: 1,
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                            child: Text(
-                          ips.length > 0 ? "${ips[0].ips}" : " - ",
-                          style: const TextStyle(
-                            fontFamily: "Lato",
-                            color: lightblueatma,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
+                          Expanded(
+                            flex: 4,
+                            child: Container(
+                                child: AutoSizeText(
+                              ips.length > 0
+                                  ? "SKS :" + " ${ips[0].sks}"
+                                  : "SKS : - ",
+                              style: const TextStyle(
+                                fontFamily: "Lato",
+                                color: blueatmacolor,
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              group: text,
+                              maxLines: 1,
+                            )),
                           ),
-                        )),
-                        SizedBox(width: 20),
-                        Container(
-                            child: Text(
-                          "SKS : ",
-                          style: const TextStyle(
-                            fontFamily: "Lato",
-                            color: blueatmacolor,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
+                          Expanded(
+                            flex: 4,
+                            child: Container(
+                                child: AutoSizeText(
+                              ips.length > 0
+                                  ? ips[0].ips >= 3
+                                      ? "Jatah SKS :" + " 24"
+                                      : "Jatah SKS : 21 "
+                                  : "Jatah SKS : - ",
+                              style: const TextStyle(
+                                fontFamily: "Lato",
+                                color: blueatmacolor,
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              group: text,
+                              maxLines: 1,
+                            )),
                           ),
-                        )),
-                        Container(
-                            child: Text(
-                          ips.length > 0 ? "${ips[0].sks}" : " - ",
-                          style: const TextStyle(
-                            fontFamily: "Lato",
-                            color: lightblueatma,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )),
-                        SizedBox(width: 20),
-                        Container(
-                            child: Text(
-                          "Jatah SKS : ",
-                          style: const TextStyle(
-                            fontFamily: "Lato",
-                            color: blueatmacolor,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )),
-                        Container(
-                            child: Text(
-                          ips.length > 0
-                              ? ips[0].ips >= 3
-                                  ? "24"
-                                  : " 21 "
-                              : "-",
-                          style: const TextStyle(
-                            fontFamily: "Lato",
-                            color: lightblueatma,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ))
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
-                // SizedBox(height: 15),
                 Container(
                   padding: EdgeInsets.only(top: 10),
                   decoration: BoxDecoration(color: Colors.white),
@@ -356,7 +344,7 @@ class _NilaiScreenState extends State with SingleTickerProviderStateMixin {
               }
               if (index == 1) {
                 setState(() {
-                  isVisible = !isVisible;
+                  isVisible = false;
                 });
               }
             },

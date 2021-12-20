@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:siatma_mobile/model/beritamodel.dart';
 import 'package:siatma_mobile/view/beritaScreen.dart';
@@ -35,14 +36,17 @@ class BeritaItem extends StatelessWidget {
                       color: Colors.black12,
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    child: Text(beritadata.judul,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          decoration: TextDecoration.none,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
-                        )),
+                    child: AutoSizeText(
+                      beritadata.judul,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        decoration: TextDecoration.none,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
+                      maxLines: 1,
+                    ),
                   ),
                 ],
               ),

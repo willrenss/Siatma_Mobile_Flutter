@@ -33,8 +33,9 @@ class _KeluarDialog extends State<KeluarDialog> {
           style: TextStyle(color: blueatmacolor),
         ),
         content: Container(
-            height: 30,
+            width: MediaQuery.of(context).size.width,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text('Apakah Anda Yakin Keluar ?',
                     textAlign: TextAlign.center,

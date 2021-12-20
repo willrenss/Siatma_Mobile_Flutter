@@ -21,13 +21,19 @@ class _ProfileScreenState extends State {
   Mahasiswa mahasiswa = new Mahasiswa();
   Infomhs info = new Infomhs();
   SKSMAT sksmat = new SKSMAT();
-  var myGroup = AutoSizeGroup();
+  AutoSizeGroup myGroup;
   var actionGroup = AutoSizeGroup();
   var profilGroup = AutoSizeGroup();
 
   final DateFormat formatter = DateFormat('dd-MMM-yyyy');
 
   String tglLahir = "";
+
+  @override
+  void initState() {
+    super.initState();
+    myGroup = new AutoSizeGroup();
+  }
 
   @override
   void didChangeDependencies() {
@@ -416,7 +422,6 @@ class _ProfileScreenState extends State {
     return Positioned(
         bottom: -70,
         child: Container(
-            height: 150.0,
             width: MediaQuery.of(context).size.width - 40,
             padding: EdgeInsets.all(10),
             margin: EdgeInsets.all(20),
@@ -456,17 +461,22 @@ class _ProfileScreenState extends State {
                           group: myGroup,
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 4,
                         ),
-                        Text(
-                            sksmat.totalsks != null
-                                ? "${sksmat.totalsks}"
-                                : "0",
-                            style: GoogleFonts.openSans(
-                              color: blueatmacolor,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w800,
-                            )),
+                        FittedBox(
+                          fit: BoxFit.fitHeight,
+                          child: Container(
+                            child: Text(
+                                sksmat.totalsks != null
+                                    ? "${sksmat.totalsks}"
+                                    : "0",
+                                style: GoogleFonts.openSans(
+                                  color: blueatmacolor,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w800,
+                                )),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -488,29 +498,36 @@ class _ProfileScreenState extends State {
                         SizedBox(
                           height: 10,
                         ),
-                        AutoSizeText(
-                          "Mata Kuliah",
-                          maxFontSize: 15,
-                          style: GoogleFonts.openSans(
-                            color: Colors.black54,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w800,
-                          ),
-                          group: myGroup,
-                          maxLines: 1,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                            sksmat.totalmatkul != null
-                                ? "${sksmat.totalmatkul}"
-                                : "0",
-                            style: GoogleFonts.openSans(
-                              color: blueatmacolor,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w800,
+                        FittedBox(
+                            fit: BoxFit.contain,
+                            child: AutoSizeText(
+                              "Mata Kuliah",
+                              maxFontSize: 15,
+                              style: GoogleFonts.openSans(
+                                color: Colors.black54,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w800,
+                              ),
+                              group: myGroup,
+                              maxLines: 1,
                             )),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        FittedBox(
+                          fit: BoxFit.fitHeight,
+                          child: Container(
+                            child: Text(
+                                sksmat.totalmatkul != null
+                                    ? "${sksmat.totalmatkul}"
+                                    : "0",
+                                style: GoogleFonts.openSans(
+                                  color: blueatmacolor,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w800,
+                                )),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -543,14 +560,19 @@ class _ProfileScreenState extends State {
                           group: myGroup,
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 4,
                         ),
-                        Text(info.ipk != null ? "${info.ipk}" : "0",
-                            style: GoogleFonts.openSans(
-                              color: blueatmacolor,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w800,
-                            )),
+                        FittedBox(
+                          fit: BoxFit.fitHeight,
+                          child: Container(
+                            child: Text(info.ipk != null ? "${info.ipk}" : "0",
+                                style: GoogleFonts.openSans(
+                                  color: blueatmacolor,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w800,
+                                )),
+                          ),
+                        ),
                       ],
                     ),
                   ),
