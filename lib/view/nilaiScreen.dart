@@ -208,7 +208,6 @@ class _NilaiScreenState extends State with SingleTickerProviderStateMixin {
               ),
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Center(
                   child: Container(
@@ -232,70 +231,68 @@ class _NilaiScreenState extends State with SingleTickerProviderStateMixin {
                   ),
                 ),
                 SizedBox(height: 15),
-                Center(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
-                    child: Center(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            flex: 5,
-                            child: Container(
-                              child: AutoSizeText(
-                                ips.length > 0
-                                    ? "IPS :" + " ${ips[0].ips}"
-                                    : "IPS : - ",
-                                style: const TextStyle(
-                                  fontFamily: "Lato",
-                                  color: blueatmacolor,
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                group: text,
-                                maxLines: 1,
+                Container(
+                  child: Row(
+                    children: [
+                      Flexible(
+                        child: Center(
+                          child: Container(
+                            child: AutoSizeText(
+                              ips.length > 0
+                                  ? "IPS :" + " ${ips[0].ips}"
+                                  : "IPS : - ",
+                              style: const TextStyle(
+                                fontFamily: "Lato",
+                                color: blueatmacolor,
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
                               ),
+                              group: text,
+                              maxLines: 1,
                             ),
                           ),
-                          Expanded(
-                            flex: 4,
-                            child: Container(
-                                child: AutoSizeText(
-                              ips.length > 0
-                                  ? "SKS :" + " ${ips[0].sks}"
-                                  : "SKS : - ",
-                              style: const TextStyle(
-                                fontFamily: "Lato",
-                                color: blueatmacolor,
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              group: text,
-                              maxLines: 1,
-                            )),
-                          ),
-                          Expanded(
-                            flex: 4,
-                            child: Container(
-                                child: AutoSizeText(
-                              ips.length > 0
-                                  ? ips[0].ips >= 3
-                                      ? "Jatah SKS :" + " 24"
-                                      : "Jatah SKS : 21 "
-                                  : "Jatah SKS : - ",
-                              style: const TextStyle(
-                                fontFamily: "Lato",
-                                color: blueatmacolor,
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              group: text,
-                              maxLines: 1,
-                            )),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
+                      Flexible(
+                        child: Center(
+                          child: Container(
+                              child: AutoSizeText(
+                            ips.length > 0
+                                ? "SKS :" + " ${ips[0].sks}"
+                                : "SKS : - ",
+                            style: const TextStyle(
+                              fontFamily: "Lato",
+                              color: blueatmacolor,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            group: text,
+                            maxLines: 1,
+                          )),
+                        ),
+                      ),
+                      Flexible(
+                        child: Center(
+                          child: Container(
+                              child: AutoSizeText(
+                            ips.length > 0
+                                ? ips[0].ips >= 3
+                                    ? "Jatah SKS :" + " 24"
+                                    : "Jatah SKS : 21 "
+                                : "Jatah SKS : - ",
+                            style: const TextStyle(
+                              fontFamily: "Lato",
+                              color: blueatmacolor,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            group: text,
+                            maxLines: 1,
+                          )),
+                        ),
+                      ),
+                      SizedBox(width: 15),
+                    ],
                   ),
                 ),
                 Container(

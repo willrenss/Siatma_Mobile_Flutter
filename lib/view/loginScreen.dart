@@ -204,9 +204,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                     child: Container(
                                       width: 30,
                                       height: 30,
-                                      child: Image.asset(
-                                          "assets/images/decoration-yellow.png",
-                                          fit: BoxFit.contain),
+                                      child: Opacity(
+                                        opacity: 0.6,
+                                        child: Image.asset(
+                                            "assets/images/decoration-yellow.png",
+                                            fit: BoxFit.contain),
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -504,6 +507,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     "UNGGUL-INKLUSIF-HUMANIS-BERINTEGRITAS",
                                                     maxLines: 1,
                                                     textAlign: TextAlign.center,
+                                                    minFontSize: 8,
                                                     maxFontSize: 12,
                                                     style: TextStyle(
                                                       color: blueatmacolor,
@@ -523,9 +527,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                     child: Container(
                                       width: 38,
                                       height: 38,
-                                      child: Image.asset(
-                                          "assets/images/decoration-blue-tip-2.png",
-                                          fit: BoxFit.contain),
+                                      child: Opacity(
+                                        opacity: 0.6,
+                                        child: Image.asset(
+                                            "assets/images/decoration-blue-tip-2.png",
+                                            fit: BoxFit.contain),
+                                      ),
                                     ),
                                   ),
                                 ],
