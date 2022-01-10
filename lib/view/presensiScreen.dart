@@ -25,11 +25,9 @@ class _PresensiScreenState extends State {
         title: Text("Presensi"),
         centerTitle: true,
       ),
-      body: SafeArea(
-        child: CustomScrollView(
+      body: CustomScrollView(
           physics: NeverScrollableScrollPhysics(),
           slivers: <Widget>[_menu(), _presensi()],
-        ),
       ),
     );
   }

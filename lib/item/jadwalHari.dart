@@ -46,10 +46,10 @@ class _JadwalItemState extends State<JadwalItem> {
                 "${widget.jadwal.matakuliah}/Sesi${cekSesi(widget.jadwal, day)}",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 13,
                     color: Colors.white,
                     fontWeight: FontWeight.w600),
-                maxFontSize: 13,
+                minFontSize: 8,
+                maxFontSize:12,
                 maxLines: 2,
               ),
             ],

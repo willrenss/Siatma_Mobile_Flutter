@@ -50,7 +50,7 @@ class _DetailEvaluasiScreenState extends State<DetailEvaluasiScreen> {
         ),
         centerTitle: true,
       ),
-      body: SafeArea(child: _detailevaluasi(isKeyboard)),
+      body:_detailevaluasi(isKeyboard),
     );
   }
 

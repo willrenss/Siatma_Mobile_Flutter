@@ -24,12 +24,11 @@ class _FormEvaluasiScreenState extends State {
         title: Text("Form Evaluasi Dosen"),
         centerTitle: true,
       ),
-      body: SafeArea(
-        child: CustomScrollView(
+      body:  CustomScrollView(
           physics: NeverScrollableScrollPhysics(),
           slivers: <Widget>[_formEvaluasi()],
         ),
-      ),
+      
     );
   }
 

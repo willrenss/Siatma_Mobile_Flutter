@@ -45,7 +45,7 @@ dependencies:
   simple_moment: ^1.1.1
   sliding_up_panel: ^2.0.0+1
   firebase_core: ^1.1.0
-  firebase_messaging: ^11.1.0
+  firebase_messaging: ^11.2.5
   flutter_local_notifications: ^9.1.0
  
 

@@ -67,8 +67,7 @@ class _NilaiScreenState extends State with SingleTickerProviderStateMixin {
         title: Text("Nilai"),
         centerTitle: true,
       ),
-      body: SafeArea(
-        child: CustomScrollView(
+      body: CustomScrollView(
           physics: NeverScrollableScrollPhysics(),
           slivers: <Widget>[
             _buildRegionTabBar(myTabs, tabController),
@@ -77,7 +76,6 @@ class _NilaiScreenState extends State with SingleTickerProviderStateMixin {
             if (!isVisible) _dhs(),
           ],
         ),
-      ),
     );
   }
 

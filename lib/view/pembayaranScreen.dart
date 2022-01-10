@@ -24,12 +24,11 @@ class _PembayaranScreenState extends State {
         title: Text("Pembayaran"),
         centerTitle: true,
       ),
-      body: SafeArea(
-        child: CustomScrollView(
+      body:CustomScrollView(
           physics: NeverScrollableScrollPhysics(),
           slivers: <Widget>[_pembayaran()],
         ),
-      ),
+      
     );
   }
 
