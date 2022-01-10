@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siatma_mobile/api/jadwal_api.dart';
+import 'package:siatma_mobile/api/mahasiswa_api.dart';
 import 'package:siatma_mobile/components/colors.dart';
 import 'package:siatma_mobile/view/loginScreen.dart';
 
@@ -54,6 +55,8 @@ class _KeluarDialog extends State<KeluarDialog> {
             TextButton(
                 onPressed: () {
                   setState(() {
+                    Provider.of<MahasiswaP>(context, listen: false).setTouch(0);
+                    Provider.of<MahasiswaP>(context, listen: false).setIndex(0);
                     Provider.of<JadwalHariIni>(context, listen: false)
                         .fetchcek(true);
                     Provider.of<JadwalHariIni>(context, listen: false)

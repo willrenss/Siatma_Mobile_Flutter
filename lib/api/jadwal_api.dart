@@ -92,12 +92,8 @@ class JadwalHariIni with ChangeNotifier {
     notifyListeners();
   }
 
-  fetchcek(bool variabel) {
-    try {
-      cek = variabel;
-    } catch (e) {
-      throw (e);
-    }
+  void fetchcek(bool variabel) {
+    cek = variabel;
 
     notifyListeners();
   }

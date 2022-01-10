@@ -12,6 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:siatma_mobile/components/colors.dart';
 import 'package:siatma_mobile/model/formevaluasi_model.dart';
 import 'package:siatma_mobile/model/mahasiswa_model.dart';
+import 'package:siatma_mobile/view/dashboardScreen.dart';
 import 'package:siatma_mobile/view/formEvaluasiScreen.dart';
 import 'package:siatma_mobile/view/pembayaranScreen.dart';
 import 'package:siatma_mobile/view/presensiScreen.dart';
@@ -476,42 +477,57 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Container(
-                          width: 100.0,
-                          height: 100.0,
-                          decoration: BoxDecoration(
-                            color: fotobirucolor,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(50.0)),
-                            border: Border.all(
-                              color: Colors.white,
-                              width: 2.0,
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            Provider.of<MahasiswaP>(context, listen: false)
+                                .setIndex(2);
+                            Provider.of<MahasiswaP>(context, listen: false)
+                                .setTouch(1);
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DashboardScreen(false)),
+                            );
+                          });
+                        },
+                        child: Container(
+                            width: 100.0,
+                            height: 100.0,
+                            decoration: BoxDecoration(
+                              color: fotobirucolor,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50.0)),
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 2.0,
+                              ),
                             ),
-                          ),
-                          child: mahasiswa.foto != null
-                              ? Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: fotobirucolor,
-                                    image: DecorationImage(
-                                        image: Image.memory(
-                                          base64.decode(mahasiswa.foto),
-                                        ).image,
-                                        fit: BoxFit.fitWidth),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(48.0)),
-                                  ),
-                                )
-                              : Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: fotobirucolor,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(48.0)),
-                                  ),
-                                )),
+                            child: mahasiswa.foto != null
+                                ? Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: fotobirucolor,
+                                      image: DecorationImage(
+                                          image: Image.memory(
+                                            base64.decode(mahasiswa.foto),
+                                          ).image,
+                                          fit: BoxFit.fitWidth),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(48.0)),
+                                    ),
+                                  )
+                                : Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: fotobirucolor,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(48.0)),
+                                    ),
+                                  )),
+                      ),
                     ],
                   ),
                 )

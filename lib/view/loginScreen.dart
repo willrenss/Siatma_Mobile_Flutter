@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:siatma_mobile/api/mahasiswa_api.dart';
 import 'package:siatma_mobile/components/ProgressHUD.dart';
 import 'package:siatma_mobile/components/background.dart';
 import 'package:siatma_mobile/components/colors.dart';
@@ -461,6 +463,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                                                   context)
                                                               .showSnackBar(
                                                                   snackBar);
+                                                          Provider.of<MahasiswaP>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .setIndex(0);
                                                           Navigator
                                                               .pushReplacement(
                                                             context,

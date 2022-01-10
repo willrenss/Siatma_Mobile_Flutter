@@ -8,6 +8,26 @@ import 'package:siatma_mobile/model/mahasiswa_model.dart';
 
 class MahasiswaP with ChangeNotifier {
   Mahasiswa _items = new Mahasiswa();
+  int selectedindex = 0;
+  int touch = 0;
+
+  int get touchs {
+    return touch;
+  }
+
+  void setTouch(int t) {
+    touch = t;
+    notifyListeners();
+  }
+
+  int get indexs {
+    return selectedindex;
+  }
+
+  void setIndex(int index) {
+    selectedindex = index;
+    notifyListeners();
+  }
 
   Mahasiswa get items {
     return _items;

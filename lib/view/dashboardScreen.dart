@@ -6,11 +6,11 @@ import 'package:siatma_mobile/api/mahasiswa_api.dart';
 import 'package:siatma_mobile/components/colors.dart';
 import 'package:siatma_mobile/view/homeScreen.dart';
 import 'package:siatma_mobile/view/jadwalScreen.dart';
-
 import 'package:siatma_mobile/view/profileScreen.dart';
 
 class DashboardScreen extends StatefulWidget {
   final bool fromcek;
+
   DashboardScreen(this.fromcek);
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
@@ -23,11 +23,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     super.initState();
-    Provider.of<MatakuliahEP>(context, listen: false).fetchMatakuliahEP();
-    Provider.of<BeritaP>(context, listen: false).fetchBerita();
-    Provider.of<FormEP>(context, listen: false).fetchKusioner();
-    Provider.of<Info>(context, listen: false).fetchInfo();
-    Provider.of<SKSMATP>(context, listen: false).fetchSKSMAT();
+    _selectedIndex = Provider.of<MahasiswaP>(context, listen: false).indexs;
+    if (Provider.of<MahasiswaP>(context, listen: false).touchs == 0) {
+      Provider.of<MatakuliahEP>(context, listen: false).fetchMatakuliahEP();
+      Provider.of<BeritaP>(context, listen: false).fetchBerita();
+      Provider.of<FormEP>(context, listen: false).fetchKusioner();
+      Provider.of<Info>(context, listen: false).fetchInfo();
+      Provider.of<SKSMATP>(context, listen: false).fetchSKSMAT();
+    }
 
     setState(() {
       if (widget.fromcek == true) {
@@ -67,6 +70,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         onSelectTab: (index) {
           setState(() {
             _selectedIndex = index;
+            Provider.of<MahasiswaP>(context, listen: false).setIndex(index);
           });
         },
         items: [
