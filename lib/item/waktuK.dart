@@ -12,7 +12,7 @@ class WaktuKItem extends StatelessWidget {
     return Container(
       height: 20,
       child: Text(
-        "Sesi ${waktuK.sesi} : ${waktuK.masuk} - ${waktuK.keluar}",
+        "Sesi ${waktuK.sesi} : ${waktuK.masuk} - ${waktuK.keluar} WIB",
         style: TextStyle(color: blueatmacolor, fontWeight: FontWeight.w600),
       ),
     );
