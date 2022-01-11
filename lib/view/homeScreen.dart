@@ -31,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   APIService apiService = new APIService();
   CarouselController buttonCarouselController = CarouselController();
   Mahasiswa mahasiswa = new Mahasiswa();
+  int cekarray;
   FormE form = new FormE();
   String day = DateFormat("dd-MMM-yyyy").format(DateTime.now());
   bool cekloading;
@@ -39,7 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     cekloading = Provider.of<JadwalHariIni>(context, listen: false).cekkondisi;
-
     print(mahasiswa);
     print(form);
     if (widget.cek == false) {
@@ -64,6 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
         });
       });
     }
+    cekarray = Provider.of<MatakuliahEP>(context, listen: true).items.length;
     mahasiswa = Provider.of<MahasiswaP>(context, listen: true).items;
     form = Provider.of<FormEP>(context, listen: true).items;
   }
@@ -153,31 +154,38 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               onTap: () {
-                if (now.isAfter(DateFormat("yyyy-MM-ddThh:mm:ssZ")
-                        .parse(form.tglmulai)) &&
-                    now.isBefore(DateFormat("yyyy-MM-ddThh:mm:ssZ")
-                        .parse(form.tglselesai))) {
-                  if (Provider.of<MatakuliahEP>(context, listen: false)
-                      .statuscek()) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => NilaiScreen()),
-                    );
-                  } else {
-                    final snackBar = SnackBar(
-                      behavior: SnackBarBehavior.floating,
-                      backgroundColor: Colors.red[800],
-                      duration: Duration(milliseconds: 800),
-                      content: Text(
-                          "Selesaikan Form Evaluasi Dosen Terlebih Dahulu"),
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  }
-                } else {
+                if (cekarray == 0) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => NilaiScreen()),
                   );
+                } else {
+                  if (now.isAfter(DateFormat("yyyy-MM-ddThh:mm:ssZ")
+                          .parse(form.tglmulai)) &&
+                      now.isBefore(DateFormat("yyyy-MM-ddThh:mm:ssZ")
+                          .parse(form.tglselesai))) {
+                    if (Provider.of<MatakuliahEP>(context, listen: false)
+                        .statuscek()) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => NilaiScreen()),
+                      );
+                    } else {
+                      final snackBar = SnackBar(
+                        behavior: SnackBarBehavior.floating,
+                        backgroundColor: Colors.red[800],
+                        duration: Duration(milliseconds: 800),
+                        content: Text(
+                            "Selesaikan Form Evaluasi Dosen Terlebih Dahulu"),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => NilaiScreen()),
+                    );
+                  }
                 }
               },
             ),
@@ -269,33 +277,43 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               onTap: () {
-                // var tglselesai = DateFormat("dd-MMM-yyyy")
-                //     .format(DateTime.parse(form.tglselesai));
-                // var tglmulai = DateFormat("dd-MMM-yyyy")
-                //     .format(DateTime.parse(form.tglmulai));
-
-                // if (now.isAfter(DateFormat("yyyy-MM-ddThh:mm:ssZ")
-                //         .parse(form.tglmulai)) &&
-                //     now.isBefore(DateFormat("yyyy-MM-ddThh:mm:ssZ")
-                //         .parse(form.tglselesai))) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => FormEvaluasiScreen()),
+                if (cekarray == 0) {
+                  final snackBar = SnackBar(
+                    behavior: SnackBarBehavior.floating,
+                    backgroundColor: Colors.red[800],
+                    duration: Duration(milliseconds: 800),
+                    content: Text("Tidak ada matakuliah yang harus dievaluasi"),
                   );
-                // } else {
-                //   final snackBar = SnackBar(
-                //     behavior: SnackBarBehavior.floating,
-                //     backgroundColor: Colors.red[800],
-                //     duration: Duration(milliseconds: 800),
-                //     content: Text(form.namaform +
-                //         " Dosen Mulai " +
-                //         tglmulai.toString() +
-                //         ", Akan Berakhir " +
-                //         tglselesai.toString()),
-                //   );
-                //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                // }
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                } else {
+                  var tglselesai = DateFormat("dd-MMM-yyyy")
+                      .format(DateTime.parse(form.tglselesai));
+                  var tglmulai = DateFormat("dd-MMM-yyyy")
+                      .format(DateTime.parse(form.tglmulai));
+
+                  if (now.isAfter(DateFormat("yyyy-MM-ddThh:mm:ssZ")
+                          .parse(form.tglmulai)) &&
+                      now.isBefore(DateFormat("yyyy-MM-ddThh:mm:ssZ")
+                          .parse(form.tglselesai))) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => FormEvaluasiScreen()),
+                    );
+                  } else {
+                    final snackBar = SnackBar(
+                      behavior: SnackBarBehavior.floating,
+                      backgroundColor: Colors.red[800],
+                      duration: Duration(milliseconds: 800),
+                      content: Text(form.namaform +
+                          " Dosen Mulai " +
+                          tglmulai.toString() +
+                          ", Akan Berakhir " +
+                          tglselesai.toString()),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
+                }
               },
             ),
           ),
