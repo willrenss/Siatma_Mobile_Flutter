@@ -243,49 +243,40 @@ class _HomeScreenState extends State<HomeScreen> {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             child: InkWell(
-              child: Stack(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: new BorderRadius.all(Radius.circular(20)),
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/evaluasiback.jpg'),
-                        fit: BoxFit.cover,
+                child: Stack(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: new BorderRadius.all(Radius.circular(20)),
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/evaluasiback.jpg'),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  ),
-                  Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Image.asset(
-                          "assets/images/evaluasi.png",
-                          width: 80,
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          'Evaluasi',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
+                    Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset(
+                            "assets/images/evaluasi.png",
+                            width: 80,
                           ),
-                        )
-                      ],
+                          SizedBox(height: 10),
+                          Text(
+                            'Evaluasi',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              onTap: () {
-                if (cekarray == 0) {
-                  final snackBar = SnackBar(
-                    behavior: SnackBarBehavior.floating,
-                    backgroundColor: Colors.red[800],
-                    duration: Duration(milliseconds: 800),
-                    content: Text("Tidak ada matakuliah yang harus dievaluasi"),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                } else {
+                  ],
+                ),
+                onTap: () {
                   var tglselesai = DateFormat("dd-MMM-yyyy")
                       .format(DateTime.parse(form.tglselesai));
                   var tglmulai = DateFormat("dd-MMM-yyyy")
@@ -295,11 +286,22 @@ class _HomeScreenState extends State<HomeScreen> {
                           .parse(form.tglmulai)) &&
                       now.isBefore(DateFormat("yyyy-MM-ddThh:mm:ssZ")
                           .parse(form.tglselesai))) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => FormEvaluasiScreen()),
-                    );
+                    if (cekarray == 0) {
+                      final snackBar = SnackBar(
+                        behavior: SnackBarBehavior.floating,
+                        backgroundColor: Colors.red[800],
+                        duration: Duration(milliseconds: 800),
+                        content:
+                            Text("Tidak ada matakuliah yang harus dievaluasi"),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FormEvaluasiScreen()),
+                      );
+                    }
                   } else {
                     final snackBar = SnackBar(
                       behavior: SnackBarBehavior.floating,
@@ -313,9 +315,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }
-                }
-              },
-            ),
+                }),
           ),
           Card(
             color: blueatmacolor,
