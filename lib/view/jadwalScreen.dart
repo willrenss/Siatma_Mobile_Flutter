@@ -1,14 +1,12 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:siatma_mobile/api/jadwal_api.dart';
-
 import 'package:siatma_mobile/components/colors.dart';
-
 import 'package:siatma_mobile/widget/jadwalkWidget.dart';
 import 'package:siatma_mobile/widget/jadwaluWidget.dart';
 import 'package:siatma_mobile/widget/semesterJadwalWidget.dart';
-
 import 'package:siatma_mobile/widget/waktuKWidget.dart';
 import 'package:siatma_mobile/widget/waktuUWidget.dart';
 
@@ -19,6 +17,8 @@ class JadwalScreen extends StatefulWidget {
 
 class _JadwalScreenState extends State with SingleTickerProviderStateMixin {
   bool isVisible = true;
+  bool jadwalk;
+  bool jadwalu;
   final List<Tab> myTabs = <Tab>[
     new Tab(text: 'Kuliah'),
     new Tab(text: 'Ujian'),
@@ -35,6 +35,13 @@ class _JadwalScreenState extends State with SingleTickerProviderStateMixin {
     tabController =
         new TabController(vsync: this, length: myTabs.length, initialIndex: 0);
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    jadwalk = Provider.of<JadwalKP>(context, listen: true).kondisijawdwalk;
+    jadwalu = Provider.of<JadwalUP>(context, listen: true).kondisijawdwalu;
+    super.didChangeDependencies();
   }
 
   @override
@@ -167,21 +174,43 @@ class _JadwalScreenState extends State with SingleTickerProviderStateMixin {
                     ),
                   ),
                   child: Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        SizedBox(height: 35),
-                        // SizedBox(height: 15),
-                        Container(
-                          decoration: BoxDecoration(color: Colors.white),
-                          height: MediaQuery.of(context).size.height - 295,
-                          child: JadwalKView(),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(color: Colors.white),
-                        )
-                      ],
-                    ),
+                    child: jadwalk == true
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(
+                                    right: 100, top: 100, left: 80, bottom: 30),
+                                child: Image.asset("assets/images/Nodata.png",
+                                    fit: BoxFit.contain),
+                              ),
+                              Container(
+                                child: AutoSizeText("Data Tidak Ditemukan",
+                                    maxLines: 1,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: blueatmacolor,
+                                      fontWeight: FontWeight.w700,
+                                    )),
+                              )
+                            ],
+                          )
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              SizedBox(height: 35),
+                              Container(
+                                decoration: BoxDecoration(color: Colors.white),
+                                height:
+                                    MediaQuery.of(context).size.height - 295,
+                                child: JadwalKView(),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(color: Colors.white),
+                              )
+                            ],
+                          ),
                   ),
                 ))));
   }
@@ -193,7 +222,6 @@ class _JadwalScreenState extends State with SingleTickerProviderStateMixin {
             child: GestureDetector(
                 onHorizontalDragEnd: (DragEndDetails details) {
                   if (details.primaryVelocity > 0) {
-                    // User swiped Left
                     setState(() {
                       isVisible = true;
                       tabController.index = 0;
@@ -211,20 +239,43 @@ class _JadwalScreenState extends State with SingleTickerProviderStateMixin {
                     ),
                   ),
                   child: Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        SizedBox(height: 35),
-                        Container(
-                          decoration: BoxDecoration(color: Colors.white),
-                          height: MediaQuery.of(context).size.height - 295,
-                          child: JadwalUView(),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(color: Colors.white),
-                        )
-                      ],
-                    ),
+                    child: jadwalu == true
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(
+                                    right: 100, top: 100, left: 80, bottom: 30),
+                                child: Image.asset("assets/images/Nodata.png",
+                                    fit: BoxFit.contain),
+                              ),
+                              Container(
+                                child: AutoSizeText("Data Tidak Ditemukan",
+                                    maxLines: 1,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: blueatmacolor,
+                                      fontWeight: FontWeight.w700,
+                                    )),
+                              )
+                            ],
+                          )
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              SizedBox(height: 35),
+                              Container(
+                                decoration: BoxDecoration(color: Colors.white),
+                                height:
+                                    MediaQuery.of(context).size.height - 295,
+                                child: JadwalUView(),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(color: Colors.white),
+                              )
+                            ],
+                          ),
                   ),
                 ))));
   }

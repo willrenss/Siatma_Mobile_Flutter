@@ -1,7 +1,9 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:siatma_mobile/api/dhs_api.dart';
+import 'package:siatma_mobile/components/colors.dart';
 import 'package:siatma_mobile/item/dhs.dart';
 import 'package:siatma_mobile/item/shimmer.dart';
 
@@ -64,19 +66,44 @@ class _DHSListState extends State<DHSList> {
       final dhsData = Provider.of<DaftarHS>(context);
       final dhs1 = dhsData.items;
       final dhs = _performSearch(dhs1, widget.query);
-      return Container(
-        color: Colors.white,
-        child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          physics: dhs.length > 0
-              ? AlwaysScrollableScrollPhysics()
-              : NeverScrollableScrollPhysics(),
-          padding: const EdgeInsets.all(10.0),
-          itemCount: dhs.length > 0 ? dhs.length : 6,
-          itemBuilder: (ctx, i) =>
-              dhs.length > 0 ? DHSItem(dhs[i]) : ShimmerItem(130),
-        ),
-      );
+      if (dhs.length > 1) {
+        return Container(
+          color: Colors.white,
+          child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            physics: dhs.length > 0
+                ? AlwaysScrollableScrollPhysics()
+                : NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.all(10.0),
+            itemCount: dhs.length > 0 ? dhs.length : 6,
+            itemBuilder: (ctx, i) =>
+                dhs.length > 0 ? DHSItem(dhs[i]) : ShimmerItem(130),
+          ),
+        );
+      } else {
+        return Container(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              padding:
+                  EdgeInsets.only(right: 100, left: 80, top: 100, bottom: 30),
+              child:
+                  Image.asset("assets/images/Nodata.png", fit: BoxFit.contain),
+            ),
+            Container(
+              child: AutoSizeText("Data Tidak Ditemukan",
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: blueatmacolor,
+                    fontWeight: FontWeight.w700,
+                  )),
+            )
+          ],
+        ));
+      }
     }
   }
 

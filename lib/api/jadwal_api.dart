@@ -8,6 +8,11 @@ import 'package:intl/intl.dart';
 
 class JadwalKP with ChangeNotifier {
   List<JadwalK> _items = [];
+  bool cek = false;
+
+  bool get kondisijawdwalk {
+    return cek;
+  }
 
   void initjadwal() {
     _items = [];
@@ -24,6 +29,7 @@ class JadwalKP with ChangeNotifier {
   }
 
   Future<void> fetchJadwalK() async {
+    cek = false;
     final prefs = await SharedPreferences.getInstance();
 
     String token = prefs.getString('token') ?? '0';
@@ -61,6 +67,7 @@ class JadwalKP with ChangeNotifier {
         ),
       );
       _items = loadJadwal;
+      if (loadJadwal.length < 1) cek = true;
       notifyListeners();
     } catch (error) {
       throw (error);
@@ -200,6 +207,11 @@ class JadwalHariIni with ChangeNotifier {
 
 class JadwalUP with ChangeNotifier {
   List<JadwalU> _items = [];
+  bool cek = false;
+
+  bool get kondisijawdwalu {
+    return cek;
+  }
 
   void initjadwal() {
     _items = [];
@@ -216,6 +228,7 @@ class JadwalUP with ChangeNotifier {
   }
 
   Future<void> fetchJadwalU() async {
+    cek = false;
     final prefs = await SharedPreferences.getInstance();
 
     String token = prefs.getString('token') ?? '0';
@@ -248,6 +261,7 @@ class JadwalUP with ChangeNotifier {
         ),
       );
       _items = loadJadwalK;
+      if (loadJadwalK.length < 1) cek = true;
       notifyListeners();
     } catch (error) {
       dispose();

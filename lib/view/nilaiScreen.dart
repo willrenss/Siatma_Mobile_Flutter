@@ -17,6 +17,7 @@ class NilaiScreen extends StatefulWidget {
 class _NilaiScreenState extends State with SingleTickerProviderStateMixin {
   bool isVisible = true;
   var _searchview = new TextEditingController();
+  bool cek;
   var text = AutoSizeGroup();
   final List<Tab> myTabs = <Tab>[
     new Tab(text: 'KHS'),
@@ -47,17 +48,20 @@ class _NilaiScreenState extends State with SingleTickerProviderStateMixin {
         setState(() {
           _firstSearch = false;
           _query = _searchview.text;
-          print(_searchview);
         });
       }
     });
   }
   @override
+  void didChangeDependencies() {
+    cek = Provider.of<KartuHS>(context, listen: true).kondisi;
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final ipsData = Provider.of<IPSP>(context);
     final ips = ipsData.items;
-
-    // print(jatah[0].sks_diambil);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: blueatmacolor,
@@ -68,14 +72,14 @@ class _NilaiScreenState extends State with SingleTickerProviderStateMixin {
         centerTitle: true,
       ),
       body: CustomScrollView(
-          physics: NeverScrollableScrollPhysics(),
-          slivers: <Widget>[
-            _buildRegionTabBar(myTabs, tabController),
-            if (isVisible) _menu(),
-            if (isVisible) _khs(ips),
-            if (!isVisible) _dhs(),
-          ],
-        ),
+        physics: NeverScrollableScrollPhysics(),
+        slivers: <Widget>[
+          _buildRegionTabBar(myTabs, tabController),
+          if (isVisible) _menu(),
+          if (isVisible) _khs(ips),
+          if (!isVisible) _dhs(),
+        ],
+      ),
     );
   }
 
@@ -293,12 +297,35 @@ class _NilaiScreenState extends State with SingleTickerProviderStateMixin {
                     ],
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.only(top: 10),
-                  decoration: BoxDecoration(color: Colors.white),
-                  height: MediaQuery.of(context).size.height - 285,
-                  child: KHSview(),
-                )
+                if (cek == false)
+                  Container(
+                    padding: EdgeInsets.only(top: 10),
+                    decoration: BoxDecoration(color: Colors.white),
+                    height: MediaQuery.of(context).size.height - 285,
+                    child: KHSview(),
+                  ),
+                if (cek == true)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(
+                            right: 100, left: 80, top: 100, bottom: 30),
+                        child: Image.asset("assets/images/Nodata.png",
+                            fit: BoxFit.contain),
+                      ),
+                      Container(
+                        child: AutoSizeText("Data Tidak Ditemukan",
+                            maxLines: 1,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: blueatmacolor,
+                              fontWeight: FontWeight.w700,
+                            )),
+                      )
+                    ],
+                  )
               ],
             ),
           ),

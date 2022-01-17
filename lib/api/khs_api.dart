@@ -7,8 +7,13 @@ import 'package:siatma_mobile/model/kartuhasilstudi_model.dart';
 
 class KartuHS with ChangeNotifier {
   List<KHS> _items = [];
+  bool cek = false;
 
   String tahun = "";
+
+  bool get kondisi {
+    return cek;
+  }
 
   String get tahunsemester {
     return tahun;
@@ -33,6 +38,7 @@ class KartuHS with ChangeNotifier {
   }
 
   Future<void> fetchKHS() async {
+    cek = false;
     final prefs = await SharedPreferences.getInstance();
 
     String token = prefs.getString('token') ?? '0';
@@ -67,6 +73,9 @@ class KartuHS with ChangeNotifier {
         ),
       );
       _items = loadKHS;
+      if (loadKHS.length < 1) {
+        cek = true;
+      }
       notifyListeners();
     } catch (error) {
       throw (error);
@@ -85,9 +94,6 @@ class IPSP with ChangeNotifier {
     _items = [];
     notifyListeners();
   }
-  // IPSE findById(String bobot) {
-  //   return _items.firstWhere((khs) => khs.BOBOT == bobot); // find the khs
-  // }
 
   Future<void> fetchIps() async {
     final prefs = await SharedPreferences.getInstance();

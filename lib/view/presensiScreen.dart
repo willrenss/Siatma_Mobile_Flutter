@@ -1,4 +1,7 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:siatma_mobile/api/presensi_api.dart';
 import 'package:siatma_mobile/components/colors.dart';
 import 'package:siatma_mobile/widget/presensiWidget.dart';
 import 'package:siatma_mobile/widget/semesterWidget.dart';
@@ -9,9 +12,16 @@ class PresensiScreen extends StatefulWidget {
 }
 
 class _PresensiScreenState extends State {
+  bool cek;
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    cek = Provider.of<PresensiP>(context, listen: true).kondisipresensi;
+    super.didChangeDependencies();
   }
 
   @override
@@ -26,8 +36,8 @@ class _PresensiScreenState extends State {
         centerTitle: true,
       ),
       body: CustomScrollView(
-          physics: NeverScrollableScrollPhysics(),
-          slivers: <Widget>[_menu(), _presensi()],
+        physics: NeverScrollableScrollPhysics(),
+        slivers: <Widget>[_menu(), _presensi()],
       ),
     );
   }
@@ -59,24 +69,47 @@ class _PresensiScreenState extends State {
                 topRight: Radius.circular(30.0),
               ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(height: 15),
-                Container(
-                  padding: EdgeInsets.only(right: 5, left: 5),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30.0),
-                      topRight: Radius.circular(30.0),
-                    ),
+            child: cek == true
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding:
+                            EdgeInsets.only(right: 100, left: 80, bottom: 30),
+                        child: Image.asset("assets/images/Nodata.png",
+                            fit: BoxFit.contain),
+                      ),
+                      Container(
+                        child: AutoSizeText("Data Tidak Ditemukan",
+                            maxLines: 1,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: blueatmacolor,
+                              fontWeight: FontWeight.w700,
+                            )),
+                      )
+                    ],
+                  )
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(height: 15),
+                      Container(
+                        padding: EdgeInsets.only(right: 5, left: 5),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30.0),
+                            topRight: Radius.circular(30.0),
+                          ),
+                        ),
+                        height: MediaQuery.of(context).size.height - 150,
+                        child: PresensiView(),
+                      ),
+                    ],
                   ),
-                  height: MediaQuery.of(context).size.height - 150,
-                  child: PresensiView(),
-                ),
-              ],
-            ),
           ),
         ));
   }

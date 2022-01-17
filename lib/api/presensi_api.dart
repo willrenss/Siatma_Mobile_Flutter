@@ -7,6 +7,11 @@ import 'package:siatma_mobile/model/presensi_model.dart';
 
 class PresensiP with ChangeNotifier {
   List<Presensi> _items = [];
+  bool cek = false;
+
+  bool get kondisipresensi {
+    return cek;
+  }
 
   List<Presensi> get items {
     return [..._items];
@@ -18,6 +23,7 @@ class PresensiP with ChangeNotifier {
   }
 
   Future<void> fetchPresensi() async {
+    cek = false;
     final prefs = await SharedPreferences.getInstance();
 
     String token = prefs.getString('token') ?? '0';
@@ -79,6 +85,9 @@ class PresensiP with ChangeNotifier {
         ),
       );
       _items = presensiload;
+      if (presensiload.length < 1) {
+        cek = true;
+      }
       notifyListeners();
     } catch (error) {
       throw (error);
